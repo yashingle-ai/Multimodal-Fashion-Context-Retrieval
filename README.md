@@ -63,8 +63,3 @@ On Apple Silicon the code auto-selects the **MPS** GPU; otherwise CUDA, else CPU
 5. "A red tie and a white shirt in a formal setting."
 
 Result grids are saved to each approach's `results/` folder.
-
-## Where the ML thinking lives
-See **[PROBLEM_ANALYSIS.md](PROBLEM_ANALYSIS.md)** for the full survey of approaches,
-tradeoffs, the chosen architecture, and future work (adding locations/weather, improving
-precision).
