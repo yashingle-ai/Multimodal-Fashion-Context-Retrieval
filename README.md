@@ -4,7 +4,7 @@ Retrieve fashion images from a database using natural-language descriptions, und
 **what** is worn, **where** the person is, and the **vibe** of the attire — going beyond a
 vanilla CLIP baseline on compositionality and fine-grained fashion attributes.
 
-Three independent, production-structured solutions are provided, each in its own directory
+Two independent, production-structured solutions are provided, each in its own directory
 with a `src/` module (logic) separated from the data, and a runnable notebook that
 executes the full **Indexer → Retriever → Evaluation** flow.
 
@@ -12,12 +12,11 @@ executes the full **Indexer → Retriever → Evaluation** flow.
 |---|----------|-------|---------|
 | **1** | [Query Decomposition + Facet Scoring](approach1_query_decomposition/) | Compositionality / attribute binding | Interpretable multi-attribute queries |
 | **2** | [Two-Stage Retrieve-and-Rerank](approach2_rerank/) | Context & precision via cross-encoder | Highest precision@k, scalable |
-| **3** | [Cap-and-RAG (VLM captioning + text-to-text)](approach3_cap_and_rag/) ⭐ | Compositionality **and** context, via language | **Recommended** — strongest on complex/compositional queries |
 
-Approaches 1–2 share a **FashionCLIP** backbone (CLIP fine-tuned on ~800K fashion pairs)
-with **ChromaDB**. **Approach 3 (recommended)** bridges vision→language: a VLM (Qwen2-VL)
-captions every image, captions are embedded with a text model (BGE), and retrieval is
-text-to-text — where syntax and composition are handled natively.
+Both approaches share a **FashionCLIP** backbone (CLIP fine-tuned on ~800K fashion pairs)
+with **ChromaDB** for vector storage. Approach 1 decomposes the query into attribute
+bindings; Approach 2 adds a BLIP cross-encoder that reranks the top-N candidates for
+higher precision at scale.
 
 ## Repository layout
 ```
